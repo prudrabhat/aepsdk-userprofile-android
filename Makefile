@@ -36,10 +36,10 @@ assemble-app:
 		(./code/gradlew -p code/testapp  assemble)
 
 ci-publish-maven-local-jitpack: assemble-phone-release
-		(./code/gradlew -p code/userprofile publishReleasePublicationToMavenLocal -Pjitpack  -x signReleasePublication)
+		(./code/gradlew -p code/userprofile publishReleasePublicationToMavenLocal -Pjitpack)
 
-ci-publish-staging: assemble-phone-release
-		(./code/gradlew -p code/userprofile publishReleasePublicationToSonatypeRepository)
+ci-publish-staging: clean
+		(./code/gradlew -p code/userprofile publish)
 
-ci-publish: assemble-phone-release
-		(./code/gradlew -p code/userprofile  publishReleasePublicationToSonatypeRepository -Prelease)
+ci-publish: clean
+		(./code/gradlew -p code/userprofile  publish -Prelease)
